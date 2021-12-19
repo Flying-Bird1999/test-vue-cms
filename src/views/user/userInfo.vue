@@ -41,7 +41,7 @@
             </el-table-column>
             <el-table-column
                     label="邮箱"
-                    width="170"
+                    width="120"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.email }}</span>
@@ -57,7 +57,7 @@
             </el-table-column>
             <el-table-column
                     label="班级"
-                    width="140"
+                    width="120"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.class }}</span>
@@ -65,7 +65,7 @@
             </el-table-column>
             <el-table-column
                     label="性别"
-                    width="70"
+                    width="50"
                     align="center">
                 <template slot-scope="scope">
                     <el-tag :type="scope.row.sex | sexStyleFilter">{{ scope.row.sex | sexFilter }}</el-tag>
@@ -74,7 +74,7 @@
             </el-table-column>
             <el-table-column
                     label="出生日期"
-                    width="140"
+                    width="120"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.birthday | getBirthday }}</span>
@@ -82,7 +82,7 @@
             </el-table-column>
             <el-table-column
                     label="参赛队伍"
-                    width="140"
+                    width="120"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.teamName }}</span>

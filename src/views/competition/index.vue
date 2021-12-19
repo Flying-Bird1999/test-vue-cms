@@ -333,7 +333,7 @@
 </template>
 
 <script>
-    import { getCompetition,addCompetition,getTeam,delCompetition,editCompetition,getTeamUser,editTeamBehavior } from "../../api/http";
+    import { getCompetition,addCompetition,getTeam,delCompetition,editCompetition,changeIntegral,getTeamUser,editTeamBehavior, getTeamBehavior } from "../../api/http";
     import { Message } from 'element-ui'
     export default {
         data() {
@@ -362,7 +362,12 @@
                     behaviorA: [{teamName:''}], // 加入teamName属性是为了显示战队名称
                     behaviorB: [{teamName:''}],
                 },
-                dialogScoreVisible: false //控制技术统计弹窗的显示与隐藏
+                dialogScoreVisible: false, //控制技术统计弹窗的显示与隐藏
+                changeIntegralData: {
+                    team_status: '',
+                    teamNameA: '',
+                    teamNameB: ''
+                }
             }
         },
         created(){
@@ -444,7 +449,11 @@
                 this.editGame = (this.competition.filter(item => item.id === row.id))[0]
                 // 获取所有队伍
                 this.getTeam()
-                // console.log(this.editGame)
+
+                // 整理需要传递给changeIntegral接口的数据
+                this.changeIntegralData.team_status = row.team_status
+                this.changeIntegralData.teamNameA = row.teamNameA
+                this.changeIntegralData.teamNameB = row.teamNameB
             },
             // 编辑比赛弹窗 —— 确定
             editSuccess(){
@@ -456,19 +465,33 @@
                             type: 'success',
                             message: '赛程编辑成功!'
                         })
+                        // 调用修改积分接口
+                        changeIntegral(this.changeIntegralData).then(res => {
+                          console.log(res)
+                        })
+
                         this.getList()
                         this.dialogEditVisible = false
                     }
                 })
             },
             // 点击录入技术统计按钮
-            handleAdd(row){
+            async handleAdd(row){
+                // 录入技术统计时，查看之前是否已录入(数据库是否已有数据)
+                // 如果已录入，则进行展示！保存在oldBehavior
+                let oldBehavior = []
+                let res = await getTeamBehavior(row.id)
+                if(res.data.code === 200) {
+                  oldBehavior = res.data.data
+                }
+
                 // 清空技术统计的表单内容
                 // 防止若获取不到队伍资料时,显示的会是上一次的内容
                 this.teamBehavior = {
                     behaviorA: [{teamName:''}],
                     behaviorB: [{teamName:''}],
                 }
+
                 this.dialogScoreVisible = true
                 let {teamNameA, teamNameB} = row
                 let data = {
@@ -498,7 +521,16 @@
                         for (let i in teamBehavior){
                             teamBehavior[i].forEach(item => {
                                 item.competition_id = row.id
-                                item.point = item.backboard = item.assist = item.foul = ''
+                                // 如果之前已录入数据，则将之前的数据进行展示，如果没有则置为空值
+                                let arr = oldBehavior.filter(old => old.user_id === item.user_id)
+                                if(arr.length > 0) {
+                                  item.point = arr[0].point
+                                  item.backboard = arr[0].backboard
+                                  item.assist = arr[0].assist
+                                  item.foul = arr[0].foul
+                                }else {
+                                  item.point = item.backboard = item.assist = item.foul = ''
+                                }
                             })
                         }
                         // 将整理好的数据赋值给this.teamBehavior
@@ -508,6 +540,7 @@
             },
             // 录入技术统计弹窗 —— 确定
             scoreSuccess(){
+              console.log(this.teamBehavior)
                 editTeamBehavior(this.teamBehavior).then(res => {
                     if (res.data.code === 200){
                         Message({

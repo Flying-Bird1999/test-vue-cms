@@ -2,7 +2,7 @@
     <div>
         <el-table
                 :data="opinion"
-                style="width: 70%">
+                style="width: 100%">
             <el-table-column
                     prop="name"
                     label="用户"
@@ -31,12 +31,20 @@
                     <el-button v-else size="mini" type="primary" @click="handleOpinion(scope.row)">点击处理</el-button>
                 </template>
             </el-table-column>
+            <el-table-column label="操作" width="200" align="center">
+                <template slot-scope="scope">
+                    <el-button
+                        size="mini"
+                        type="danger"
+                        @click="handleDelete(scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
         </el-table>
     </div>
 </template>
 
 <script>
-    import { getOpinion,handleOpinion } from "../../api/http";
+    import { getOpinion,handleOpinion, deleteOpinion } from "../../api/http";
     import { Message } from 'element-ui'
 
     export default {
@@ -79,6 +87,31 @@
                 }).catch(() => {
                     Message.info('请求失败');
                 })
+            },
+            handleDelete(row) {
+              // console.log(row)
+              this.$confirm('您确定是否删除该意见?', '删除提示', {
+                  confirmButtonText: '确定',
+                  cancelButtonText: '取消',
+                  type: 'warning'
+              }).then(() => {
+                  deleteOpinion(row.id).then(res => {
+                      if (res.data.code === 200){
+                          Message({
+                              type: 'success',
+                              message: '删除成功!'
+                          })
+                          this.getList()
+                      }else {
+                          Message.error('删除失败');
+                      }
+                  })
+              }).catch(() => {
+                  Message({
+                      type: 'info',
+                      message: '已取消删除'
+                  })
+              })
             }
         },
         filters: {

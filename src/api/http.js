@@ -193,7 +193,18 @@ export function editCompetition(data) {
         data
     })
 }
-// 录入技术统计时，获取两支球队人员
+
+// 赛程--更新积分
+export function changeIntegral(data) {
+  return request({
+    method: 'post',
+    url: 'competition/changeIntegral',
+    data
+  })
+}
+
+
+// 赛程--录入技术统计时，获取两支球队人员
 export function getTeamUser(data) {
     return request({
         method: 'post',
@@ -201,7 +212,16 @@ export function getTeamUser(data) {
         data
     })
 }
-// 录入两队的技术统计
+
+// 赛程--录入技术统计时，查看之前是否已录入(数据库是否已有数据)，如果有，获取数据
+export function getTeamBehavior(data) {
+  return request({
+    method: 'get',
+    url: `competition/getTeamBehavior/${data}`,
+  })
+}
+
+// 赛程--录入两队的技术统计
 export function editTeamBehavior(data) {
     return request({
         method: 'post',
@@ -218,13 +238,29 @@ export function getNotify() {
         url: 'notify/getNotify'
     })
 }
-// 消息通知--获取已发送通知
+// 消息通知--获取通知详情
+export function getNotifyDetail(data){
+  return request({
+    method: 'post',
+    url: 'notify/getNotifyDetail',
+    data
+  })
+}
+// 消息通知--发送通知
 export function sendNotify(data) {
     return request({
         method: 'post',
         url: 'notify/sendNotify',
         data
     })
+}
+// 消息通知--删除通知
+export function deleteNotify(data) {
+  return request({
+    method: 'post',
+    url: 'notify/deleteNotify',
+    data
+  })
 }
 
 // 意见反馈--获取被反馈的意见
@@ -241,6 +277,11 @@ export function handleOpinion(data) {
         url: `opinion/handleOpinion/${data}`
     })
 }
-
-
+// 意见反馈--删除意见反馈的接口
+export function deleteOpinion(data) {
+  return request({
+    method: 'get',
+    url: `opinion/deleteOpinion/${data}`,
+  })
+}
 
