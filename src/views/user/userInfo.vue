@@ -25,7 +25,7 @@
             </el-table-column>
             <el-table-column
                     label="密码"
-                    width="80"
+                    width="100"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.password }}</span>
@@ -41,7 +41,7 @@
             </el-table-column>
             <el-table-column
                     label="邮箱"
-                    width="120"
+                    width="200"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.email }}</span>
@@ -49,7 +49,7 @@
             </el-table-column>
             <el-table-column
                     label="姓名"
-                    width="80"
+                    width="90"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.name }}</span>
@@ -57,7 +57,7 @@
             </el-table-column>
             <el-table-column
                     label="班级"
-                    width="120"
+                    width="140"
                     align="center">
                 <template slot-scope="scope">
                     <span style="margin-left: 10px">{{ scope.row.class }}</span>
@@ -65,7 +65,7 @@
             </el-table-column>
             <el-table-column
                     label="性别"
-                    width="50"
+                    width="70"
                     align="center">
                 <template slot-scope="scope">
                     <el-tag :type="scope.row.sex | sexStyleFilter">{{ scope.row.sex | sexFilter }}</el-tag>
