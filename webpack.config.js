@@ -62,20 +62,20 @@ module.exports = {
       },
       {
         test: /\.css$/, //以css结尾的文件
-        use: ['style-loader', 'css-loader'], //装载器loader
-        // use: [MiniCssExtractPlugin.loader, 'css-loader'] //装载器loader
+        // use: ['style-loader', 'css-loader'] //装载器loader
+        use: [MiniCssExtractPlugin.loader, 'css-loader'], //装载器loader
       },
       {
         test: /\.less$/,
         // 还需要安装less
-        use: ['style-loader', 'css-loader', 'less-loader'],
-        // use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
+        // use: ['style-loader', 'css-loader', 'less-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.scss$/,
         // 还需要安装node-sass  版本不要太高
-        use: ['style-loader', 'css-loader', 'sass-loader'],
-        // use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        // use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.vue$/,
