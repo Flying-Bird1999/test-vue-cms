@@ -1,6 +1,0 @@
-export const ADD_ITEM = 'addItem'
-export const DEL_ITEM = 'delItem'
-export const RADIO_ITEM = 'radioItem'
-export const CLEAR_ITEM = 'clearItem'
-export const ALL_ITEM = 'allItem'
-export const CHANGE_ITEM = 'changeItem'

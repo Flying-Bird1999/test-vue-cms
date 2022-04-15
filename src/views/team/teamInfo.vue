@@ -1,10 +1,10 @@
 <template>
     <div class="teamInfo">
-        <div class="team-item" v-for="item in teamInfo">
-            <h1>{{item[0].groupName}}组队伍</h1>
+        <div class="team-item" v-for="(item, index) in teamInfo" :key="index">
+            <h1 style="padding-left: 30px; font-size: 22px">{{item[0].groupName}}组队伍</h1>
             <el-table
                     :data="item"
-                    style="width: 60%">
+                    style="width: 80%">
                 <el-table-column
                         label="队伍名称"
                         width="120"
@@ -21,14 +21,14 @@
                         <span style="margin-left: 10px">{{ scope.row.groupName }}</span>
                     </template>
                 </el-table-column>
-                <!--<el-table-column-->
-                        <!--label="照片"-->
-                        <!--width="200"-->
-                        <!--align="center">-->
-                    <!--<template slot-scope="scope">-->
-                        <!--<img :src="scope.row.teampic" style="width: 150px; height: 90px;">-->
-                    <!--</template>-->
-                <!--</el-table-column>-->
+                <el-table-column
+                        label="照片"
+                        width="200"
+                        align="center">
+                    <template slot-scope="scope">
+                        <img :src="scope.row.teampic" style="width: 150px; height: 90px;">
+                    </template>
+                </el-table-column>
                 <el-table-column
                         label="评分"
                         width="100"
@@ -58,6 +58,7 @@
                     </template>
                 </el-table-column>
             </el-table>
+
         </div>
 
         <!-- 人员详情弹窗 -->
@@ -239,6 +240,7 @@
                             })
                         })
                         this.teamInfo = newData
+                        console.log(this.teamInfo)
                     }
                 })
             },

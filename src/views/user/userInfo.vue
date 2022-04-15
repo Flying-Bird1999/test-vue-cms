@@ -13,8 +13,7 @@
         <el-table
                 :data="tableData"
                 style="width: 100%"
-                border
-                height="410">
+                border>
             <el-table-column
                     label="用户名"
                     width="80"
@@ -111,34 +110,34 @@
         <el-dialog title="修改用户详情" :visible.sync="dialogDetailsVisible" width="60%">
             <el-form :model="userInfo" label-position="right" label-width="100px" :inline="true" class="demo-form-inline">
                 <el-form-item label="用户名" style="margin-right: 80px">
-                    <el-input v-model="userInfo.username" autocomplete="off"></el-input>
+                    <el-input v-model="userInfo.username" autocomplete="off" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item label="密码">
-                    <el-input v-model="userInfo.password" autocomplete="off"></el-input>
+                    <el-input v-model="userInfo.password" autocomplete="off" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item label="手机号" style="margin-right: 80px">
-                    <el-input v-model="userInfo.phone" autocomplete="off"></el-input>
+                    <el-input v-model="userInfo.phone" autocomplete="off" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item label="邮箱">
-                    <el-input v-model="userInfo.email" autocomplete="off"></el-input>
+                    <el-input v-model="userInfo.email" autocomplete="off" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item label="姓名" style="margin-right: 80px">
-                    <el-input v-model="userInfo.name" autocomplete="off"></el-input>
+                    <el-input v-model="userInfo.name" autocomplete="off" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item label="班级">
-                    <el-input v-model="userInfo.class" autocomplete="off"></el-input>
+                    <el-input v-model="userInfo.class" autocomplete="off" style="width: 200px;"></el-input>
                 </el-form-item>
                 <el-form-item label="性别">
-                    <el-select v-model="userInfo.sex" placeholder="选择性别" style="margin-right: 70px;width: 202px;">
+                    <el-select v-model="userInfo.sex" placeholder="选择性别" style="margin-right: 70px;width: 200px;">
                         <el-option label="男" :value="sex.man"></el-option>
                         <el-option label="女" :value="sex.woman"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item label="出生日期">
-                    <el-date-picker type="date" placeholder="选择出生时间" v-model="userInfo.birthday" style="width: 202px;"></el-date-picker>
+                    <el-date-picker type="date" placeholder="选择出生时间" v-model="userInfo.birthday" style="width: 200px;"></el-date-picker>
                 </el-form-item>
                 <el-form-item label="参赛队伍" v-if="userInfo.identity==1 || userInfo.identity==0">
-                    <el-select v-model="userInfo.teamName" placeholder="请选择参赛队伍" style="margin-right: 70px;width: 202px;">
+                    <el-select v-model="userInfo.teamName" placeholder="请选择参赛队伍" style="margin-right: 70px;width: 200px;">
                         <el-option v-for="team in teams"
                                    :key="team.id"
                                    :label="team.teamName"
@@ -147,7 +146,7 @@
                     </el-select>
                 </el-form-item>
                 <el-form-item label="身份">
-                    <el-select v-model="userInfo.identity" placeholder="选择性别" style="width: 202px;">
+                    <el-select v-model="userInfo.identity" placeholder="选择性别" style="width: 200px;">
                         <el-option label="队长" value="1"></el-option>
                         <el-option label="队员" value="0"></el-option>
                         <el-option label="观众" value="-1"></el-option>

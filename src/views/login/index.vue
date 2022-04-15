@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="login">
-            <h1>计科院篮球院赛</h1>
+            <h1>计科院篮球院赛管理</h1>
             <div class="user">
                 <span class="user-name">用户名</span>
                 <div class="user-input">
@@ -54,15 +54,17 @@
         position: absolute;
         width: 100%;
         height: 100%;
-        background: url('../../assets/images/background.jpg');
+        background: url('../../assets/images/bg.jpg');
         background-size: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .login {
+            margin-right: -600px;
+            height: 390px;
             background-color: white;
+            opacity: .6;
             border: 1px solid #000;
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%,-50%);
             box-sizing: border-box;
             padding: 30px 40px 10px 40px;
             border-radius: 7px;

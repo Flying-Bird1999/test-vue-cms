@@ -17,7 +17,7 @@
         margin-top: 60px;
         padding-bottom: 60px;
         color: #333;
-        height: 574px;
+        height: calc(100vh - 60px - 70px);
         overflow: scroll;
     }
 </style>
