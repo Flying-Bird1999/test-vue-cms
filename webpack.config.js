@@ -1,6 +1,6 @@
 let path = require('path');
 let HtmlWebpackPlugin = require('html-webpack-plugin'); // 将打包后的js自动添加到html
-let MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 把css抽取成一个单独的文件
+// let MiniCssExtractPlugin = require('mini-css-extract-plugin'); // 把css抽取成一个单独的文件
 // 默认webpack支持js打包压缩（生产模式），添加了optimize-css-assets-webpack-plugin后，webpack的js打包压缩无效，需要配置terser-webpack-plugin
 let TerserPlugin = require('terser-webpack-plugin'); //js压缩
 let OptimizeCssPlugin = require('optimize-css-assets-webpack-plugin'); //css压缩
@@ -62,20 +62,20 @@ module.exports = {
       },
       {
         test: /\.css$/, //以css结尾的文件
-        // use: ['style-loader', 'css-loader'] //装载器loader
-        use: [MiniCssExtractPlugin.loader, 'css-loader'], //装载器loader
+        use: ['style-loader', 'css-loader'], //装载器loader
+        // use: [MiniCssExtractPlugin.loader, 'css-loader'], //装载器loader
       },
       {
         test: /\.less$/,
         // 还需要安装less
-        // use: ['style-loader', 'css-loader', 'less-loader']
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
+        use: ['style-loader', 'css-loader', 'less-loader'],
+        // use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
       },
       {
         test: /\.scss$/,
         // 还需要安装node-sass  版本不要太高
-        // use: ['style-loader', 'css-loader', 'sass-loader']
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
+        // use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.vue$/,
@@ -89,8 +89,8 @@ module.exports = {
       template: './public/index.html', //指定模板
       filename: 'index.html', //打包之后的模板名字
     }),
-    new MiniCssExtractPlugin({
-      filename: 'css/index.css',
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: 'css/index.css',
+    // }),
   ],
 };
